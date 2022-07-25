@@ -48,7 +48,7 @@ bot = Client(
     api_id=int(os.environ.get("API_ID")),
     api_hash=os.environ.get("API_HASH")
 )
-
+auth_users = [ int(chat) for chat in os.environ.get("AUTH_USERS").split(",") if chat != '']
 logger = logging.getLogger()
 # thumb = os.environ.get("THUMB")
 # if thumb.startswith("http://") or thumb.startswith("https://"):
