@@ -128,7 +128,7 @@ async def account_login(bot: Client, m: Message):
     url2 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
     topicid = url2.json()["data"]["batch_topic"]
     bn =url2.json()["data"]["batch_detail"]["name"]
-#     await m.reply_text(f'Batch details of **{bn}** are :')
+     await m.reply_text(f'Batch details of **{bn}** are :')
     vj=""
     for data in topicid:
         tids = (data["id"])
@@ -170,8 +170,8 @@ async def account_login(bot: Client, m: Message):
             cool1=""
         cool1+=hh
     await m.reply_text(f'Batch details of **{bn}** are:\n\n{BBB}\n\n{cool1}\n\n**{vcx}**')
-#     await m.reply_text(f'**{vcx}**')
-#     await m.reply_text(f'```{vj}```')
+     await m.reply_text(f'**{vcx}**')
+     await m.reply_text(f'```{vj}```')
 
     editable3= await m.reply_text("**Now send the Resolution**")
     input4 = message = await bot.listen(editable.chat.id)
