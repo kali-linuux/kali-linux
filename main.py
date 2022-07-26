@@ -200,13 +200,14 @@ async def account_login(bot: Client, m: Message):
     raw_text9 = input9.text
   
     try:
+        xvv = raw_text9.split('&')
+           for z in range(0,len(xvv)):
+               p =xvv[z]
      #   xv = raw_text3.split('&')
-       # for y in range(0,len(xv)):
-       #     t =xv[y]
+     # for y in range(0,len(xv)):
+         #     t =xv[y]
         
-            xvv = raw_text9.split('&')
-              for z in range(0,len(xvv)):
-                 p =xvv[z]
+
         
         
             #gettting all json with diffrent topic id https://elearn.crwilladmin.com/api/v1/comp/batch-detail/881?redirectBy=mybatch&topicId=2324&token=d76fce74c161a264cf66b972fd0bc820992fe57
