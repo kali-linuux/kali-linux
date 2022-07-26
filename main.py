@@ -89,25 +89,29 @@ info= {
 }
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
-async def account_login(bot: Client, m: Message):
+async def account_login(bot: Client, message: Message):
     editable = await m.reply_text(
         "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
-
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
     info["email"] = raw_text.split("*")[0]
     info["password"] = raw_text.split("*")[1]
-    await m.reply_text(input1)
     await input1.delete(True)
-
-    login_response=requests.post(url+"login-other",info)
-    token=login_response.json( )["data"]["token"]
-    await editable.edit("**login Successful**")
-    #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
-    b_data = url1.json()['data']['batchData']
+    
+ async def download_json_info(bot: Client, message: Message):
+    json_ans = await bot.ask(message.chat.id, "Send json")
+    try:
+        if json_ans.document.mime_type != "application/json":
+            return
+        file_name = json_ans.document.file_name
+    except:
+        return
+    json_file = f"./downloads/{message.chat.id}/{file_name}"
+    await json_ans.download(json_file)
+    videos_dict = json.load(open(json_file))
+    b_data = videos_dict.json()['data']['batchData']
 
     cool=""
     for data in b_data:
