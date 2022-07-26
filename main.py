@@ -212,7 +212,7 @@ async def account_login(bot: Client, m: Message):
             
             url3 = "https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+t+"&token="+token   
             ff = requests.get(url3)
-            #vc =ff.json()["data"]["class_list"]["batchDescription"]
+            vc =ff.json()["data"]["class_list"]["batchDescription"]
             mm = ff.json()["data"]["class_list"]["batchName"]
             
             vv =ff.json()["data"]["class_list"]["classes"]
