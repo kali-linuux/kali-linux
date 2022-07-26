@@ -171,7 +171,7 @@ async def account_login(bot: Client, m: Message):
         cool1+=hh
     await m.reply_text(f'Batch details of **{bn}** are:\n\n{BBB}\n\n{cool1}\n\n**{vcx}**')
     # await m.reply_text(f'**{vcx}**')
-     await m.reply_text(f'```{vj}```')
+     #await m.reply_text(f'```{vj}```')
 
     editable3= await m.reply_text("**Now send the Resolution**")
     input4 = message = await bot.listen(editable.chat.id)
