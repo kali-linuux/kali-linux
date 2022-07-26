@@ -48,6 +48,13 @@ bot = Client(
     api_id=int(os.environ.get("API_ID")),
     api_hash=os.environ.get("API_HASH")
 )
+with bot:
+    Bot = bot.get_me().username.lower()
+
+auth_users = [ int(chat) for chat in os.environ.get("AUTH_USERS").split(",") if chat != '']
+sudo_groups = [ int(chat) for chat in os.environ.get("GROUPS").split(",")  if chat != '']
+sudo_json_groups = [ int(chat) for chat in os.environ.get("HTML_GROUPS").split(",")  if chat != '']
+sudo_users = auth_users
 
 logger = logging.getLogger()
 # thumb = os.environ.get("THUMB")
