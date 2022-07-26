@@ -249,7 +249,7 @@ async def account_login(bot: Client, m: Message):
                         
                     else:
                         link="https://www.youtube.com/embed/"+bcvid
-                     await m.reply_text(link indent 1)
+                     #await m.reply_text(link)
 
                     editable3= await m.reply_text("**Now send the Resolution**")
                     input4 = message = await bot.listen(editable.chat.id)
