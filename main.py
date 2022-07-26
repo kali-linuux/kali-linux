@@ -98,7 +98,6 @@ async def account_login(bot: Client, m: Message):
     raw_text = input1.text
     info["email"] = raw_text.split("*")[0]
     info["password"] = raw_text.split("*")[1]
-    await m.reply_text(input1)
     await input1.delete(True)
 
     login_response=requests.post(url+"login-other",info)
@@ -227,7 +226,7 @@ async def account_login(bot: Client, m: Message):
                     lessonName = (data["lessonName"]).replace("/", "_")
                     
                     bcvid = (data["lessonUrl"][0]["link"])
-#                     lessonName = re.sub('\|', '_', cf)
+                     lessonName = re.sub('\|', '_', cf)
                     
                 
                 
@@ -250,11 +249,11 @@ async def account_login(bot: Client, m: Message):
                         
                     else:
                         link="https://www.youtube.com/embed/"+bcvid
-                    # await m.reply_text(link)
+                     await m.reply_text(link)
 
-                    #editable3= await m.reply_text("**Now send the Resolution**")
-                    #input4 = message = await bot.listen(editable.chat.id)
-                    #raw_text4 = input4.text
+                    editable3= await m.reply_text("**Now send the Resolution**")
+                    input4 = message = await bot.listen(editable.chat.id)
+                    raw_text4 = input4.text
 
                     cc = f"**{count}) Title :** {lessonName}\n\n**Quality :** {raw_text4}\n**Batch :** {mm}"
                     Show = f"**Downloading:-**\n**Title -** ```{lessonName}\n\nQuality - {raw_text4}```\n\n**Url :-** ```{link}```"
