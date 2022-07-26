@@ -252,9 +252,7 @@ async def account_login(bot: Client, m: Message):
                      #await m.reply_text(link)
 
                     editable3= await m.reply_text("**Now send the Resolution**")
-                    input4 = message = await bot.listen(editable.chat.id)
-                    raw_text4 = input4.text
-
+                    raw_text4 = "480"
                     cc = f"**{count}) Title :** {lessonName}\n\n**Quality :** {raw_text4}\n**Batch :** {mm}"
                     Show = f"**Downloading:-**\n**Title -** ```{lessonName}\n\nQuality - {raw_text4}```\n\n**Url :-** ```{link}```"
                     prog = await m.reply_text(Show)
