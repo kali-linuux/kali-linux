@@ -89,19 +89,11 @@ info= {
 }
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
-async def account_login(bot: Client, message: Message):
- 
-    json_ans = await bot.ask(message.chat.id, "Send json")
-    try:
-        if json_ans.document.mime_type != "application/json":
-            return
-        file_name = json_ans.document.file_name
-    except:
-        return
-    json_file = f"./downloads/{message.chat.id}/{file_name}"
-    await json_ans.download(json_file)
-    videos_dict = json.load(open(json_file))
-    b_data = videos_dict.json()['data']['batchData']
+async def account_login(bot: Client, m: Message):
+      myjsonfile=open('kali-linuux\UP Police Constable.json','r')
+        jsondata=myjsonfile.read()
+    obj=json.load(jsondata)
+    b_data = obj.json()['data']['batchData']
 
     editable3= await m.reply_text("**Now send the Resolution**")
     input4 = message = await bot.listen(editable.chat.id)
