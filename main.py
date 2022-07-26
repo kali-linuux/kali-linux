@@ -119,11 +119,6 @@ async def account_login(bot: Client, message: Message):
     else:
         thumb == "no"
     
-   editable2= await m.reply_text(f"Now send the **Topic IDs** to Download\n\nSend like this **1&2&3&4** so on\nor copy paste or edit **below ids** according to you :\n\n**Enter this to download full batch :-**\n```{vj}```")
-    
-       input3 = message = await bot.listen(editable.chat.id)
-        raw_text3 = input3.text
-    
    # editable9= await m.reply_text(f"Now send the **Topic Names**\n\nSend like this **1&2&3&4** and so on\nor copy paste or edit **below names according to you in Order of ids you entered above** :\n\n**Enter this to download full batch :-**\n```{vp}```")
     
     #   input9 = message = await bot.listen(editable.chat.id)
