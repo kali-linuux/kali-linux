@@ -189,24 +189,24 @@ async def account_login(bot: Client, m: Message):
     else:
         thumb == "no"
     
-    editable2= await m.reply_text(f"Now send the **Topic IDs** to Download\n\nSend like this **1&2&3&4** so on\nor copy paste or edit **below ids** according to you :\n\n**Enter this to download full batch :-**\n```{vj}```")
+  #  editable2= await m.reply_text(f"Now send the **Topic IDs** to Download\n\nSend like this **1&2&3&4** so on\nor copy paste or edit **below ids** according to you :\n\n**Enter this to download full batch :-**\n```{vj}```")
     
-    input3 = message = await bot.listen(editable.chat.id)
-    raw_text3 = input3.text
+  #  input3 = message = await bot.listen(editable.chat.id)
+ #   raw_text3 = input3.text
     
-#     editable9= await m.reply_text(f"Now send the **Topic Names**\n\nSend like this **1&2&3&4** and so on\nor copy paste or edit **below names according to you in Order of ids you entered above** :\n\n**Enter this to download full batch :-**\n```{vp}```")
+    editable9= await m.reply_text(f"Now send the **Topic Names**\n\nSend like this **1&2&3&4** and so on\nor copy paste or edit **below names according to you in Order of ids you entered above** :\n\n**Enter this to download full batch :-**\n```{vp}```")
     
-#     input9 = message = await bot.listen(editable.chat.id)
-#     raw_text9 = input9.text
+    input9 = message = await bot.listen(editable.chat.id)
+    raw_text9 = input9.text
   
     try:
-        xv = raw_text3.split('&')
-        for y in range(0,len(xv)):
-            t =xv[y]
+     #   xv = raw_text3.split('&')
+       # for y in range(0,len(xv)):
+       #     t =xv[y]
         
-#              xvv = raw_text9.split('&')
-#              for z in range(0,len(xvv)):
-#                  p =xvv[z]
+            xvv = raw_text9.split('&')
+              for z in range(0,len(xvv)):
+                 p =xvv[z]
         
         
             #gettting all json with diffrent topic id https://elearn.crwilladmin.com/api/v1/comp/batch-detail/881?redirectBy=mybatch&topicId=2324&token=d76fce74c161a264cf66b972fd0bc820992fe57
