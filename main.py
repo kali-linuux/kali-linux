@@ -251,7 +251,6 @@ async def account_login(bot: Client, m: Message):
                         link="https://www.youtube.com/embed/"+bcvid
                      #await m.reply_text(link)
 
-                    editable3= await m.reply_text("**Now send the Resolution**")
                     raw_text4 = "480"
                     cc = f"**{count}) Title :** {lessonName}\n\n**Quality :** {raw_text4}\n**Batch :** {mm}"
                     Show = f"**Downloading:-**\n**Title -** ```{lessonName}\n\nQuality - {raw_text4}```\n\n**Url :-** ```{link}```"
