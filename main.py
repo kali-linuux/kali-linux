@@ -40,8 +40,9 @@ from subprocess import getstatusoutput
 import logging
 import os
 import re
+import sys
+import requests 
 
-import requests
 bot = Client(
     "CW",
     bot_token=os.environ.get("BOT_TOKEN"),
@@ -70,6 +71,18 @@ async def start(bot, update):
 
 **🅱🅾🆃 🅼🅰🅳🅴 🅱🆈 **🅰🅱🅷🅸🆂🅷🅴🅺 🅱🅻🅰🅲🅺🅾🆄🆃**
          ''')
+
+@bot.on_message(filters.command(["cancel"]))
+async def cancel(_, m):
+    editable = await m.reply_text("Canceling All process Plz wait")
+    global cancel
+    cancel = True
+    await editable.edit("cancled")
+    return
+@bot.on_message(filters.command("restart"))
+async def restart_handler(_, m):
+    await m.reply_text("Restarted!", True)
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1VmXspFMod94-pT7xDCvmBEYt8U7f0mRB6XnG5huPE7I9qjhDW0qpx3LRyTD9WX7W6JvUGtgKN-qf1pJoZO-QXBMIykDivtAOgkJOmN-kyv4m_F0thrJ45z95hqWON0nsKBwvd"
