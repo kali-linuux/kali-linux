@@ -218,8 +218,8 @@ async def account_login(bot: Client, m: Message):
             
             vv =ff.json()["data"]["class_list"]["classes"]
             vv.reverse()
-            #clan =f"**{vc}**\n\nNo of links found in topic-id {raw_text3} are **{len(vv)}**"
-            #await m.reply_text(clan)
+            clan =f"**{vc}**\n\nNo of links found in topic-id {raw_text3} are **{len(vv)}**"
+            await m.reply_text(clan)
             count = 1
             try:
                 for data in vv:
@@ -250,11 +250,11 @@ async def account_login(bot: Client, m: Message):
                         
                     else:
                         link="https://www.youtube.com/embed/"+bcvid
-                    # await m.reply_text(link)
+                     await m.reply_text(link)
 
-                    #editable3= await m.reply_text("**Now send the Resolution**")
-                    #input4 = message = await bot.listen(editable.chat.id)
-                    #raw_text4 = input4.text
+                    editable3= await m.reply_text("**Now send the Resolution**")
+                    input4 = message = await bot.listen(editable.chat.id)
+                    raw_text4 = input4.text
 
                     cc = f"**{count}) Title :** {lessonName}\n\n**Quality :** {raw_text4}\n**Batch :** {mm}"
                     Show = f"**Downloading:-**\n**Title -** ```{lessonName}\n\nQuality - {raw_text4}```\n\n**Url :-** ```{link}```"
