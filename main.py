@@ -226,7 +226,7 @@ async def account_login(bot: Client, m: Message):
                     lessonName = (data["lessonName"]).replace("/", "_")
                     
                     bcvid = (data["lessonUrl"][0]["link"])
-                     lessonName = re.sub('\|', '_', cf)
+                     #lessonName = re.sub('\|', '_', cf)
                     
                 
                 
