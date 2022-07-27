@@ -94,28 +94,30 @@ url="https://elearn.crwilladmin.com/api/v1/"
 
 info= {
  "deviceType":"android",
-    "password":"",
+    "password":"qwerty321",
+    "deviceIMEI":""
     "deviceModel":"Asus ASUS_X00TD",
-    "deviceVersion":"Pie(Android 9.0)",
-    "email":"",
+    "deviceVersion":"",
+    "email":"8468056864",
+    "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
 }
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(
+    #editable = await m.reply_text(
         "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
 
-    input1: Message = await bot.listen(editable.chat.id)
-    raw_text = input1.text
-    info["email"] = raw_text.split("*")[0]
-    info["password"] = raw_text.split("*")[1]
-    await m.reply_text(raw_text)
-    await input1.delete(True)
+    #input1: Message = await bot.listen(editable.chat.id)
+    #raw_text = input1.text
+    #info["email"] = raw_text.split("*")[0]
+    #info["password"] = raw_text.split("*")[1]
+    #await m.reply_text(raw_text)
+    #await input1.delete(True)
     
     login_response=requests.post(url+"login-other",info)
     await m.reply_text(login_response.status_code)
-    await m.reply_text(login_response.json())
+    #await m.reply_text(login_response.json())
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
     editable12= await m.reply_text("**Now send the Token to Download**")
