@@ -110,16 +110,23 @@ async def account_login(bot: Client, m: Message):
     raw_text = input1.text
     info["email"] = raw_text.split("*")[0]
     info["password"] = raw_text.split("*")[1]
-    await m.reply_text(input1)
+    await m.reply_text(raw_text)
     await input1.delete(True)
-
+    
     login_response=requests.post(url+"login-other",info)
+    decoded_data=response.content.decode('utf-8-sig')
     token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
-    b_data = url1.json()['data']['batchData']
+# Making a get request
+response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
+decoded_data=response.content.decode('utf-8-sig')
+# printing request content
+b_data = response.json()['data']['batchData']
+#print("Response as JSON: ",b_data.json())
+#print(b_data)
+
 
     cool=""
     for data in b_data:
