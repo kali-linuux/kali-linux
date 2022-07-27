@@ -115,8 +115,8 @@ async def account_login(bot: Client, m: Message):
     await input1.delete(True)
 
     login_response=requests.post(url+"login-other",info)
-    login_response=login_response.encoding
-    login_response=login_response.decode('utf-8')
+    login_response1= login_response.json()
+    print( login_response1)
     token=login_response.json( )["data"]["token"]
     await m.reply_text(token)
     await editable.edit("**login Successful**")
