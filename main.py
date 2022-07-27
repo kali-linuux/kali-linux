@@ -114,8 +114,8 @@ async def account_login(bot: Client, m: Message):
     await input1.delete(True)
     
     login_response=requests.post(url+"login-other",info)
-    await m.reply_text("Status code: ", login_response.status_code)
-    await m.reply_text("Response as JSON: ",login_response.json())
+    await m.reply_text(login_response.status_code)
+    await m.reply_text(login_response.json())
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
     editable12= await m.reply_text("**Now send the Token to Download**")
