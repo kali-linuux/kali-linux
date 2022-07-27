@@ -116,8 +116,8 @@ async def account_login(bot: Client, m: Message):
     
     #headers = {'Content-Type': 'application/json'}
     login_response=requests.post(url+"login-other",info)
-    #login_response=login_response.content.decode('utf-8-sig')
-    token=login_response.json( )["data"]["token"]
+    login_response1=login_response.content.decode('utf-8-sig')
+    token=login_response1.json( )["data"]["token"]
     await m.reply_text(token)
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
