@@ -127,20 +127,24 @@ async def account_login(bot: Client, m: Message):
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
+token="c1c5172260b7f679e32ccb06ac5f04f84fecfbf3"
 # Making a get request
-response = requests.get('https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token=c1c5172260b7f679e32ccb06ac5f04f84fecfbf3')
-
+response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
+decoded_data=response.content.decode('utf-8-sig')
 # printing request content
 b_data = response.json()['data']['batchData']
-    cool=""
-    for data in b_data:
+#print("Response as JSON: ",b_data.json())
+#print(b_data)
+cool=""
+for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
         aa =f" ```{data['id']}```      - **{data['batchName']}**\n{data['instructorName']}\n\n"
         #aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}')>4096:
-            await m.reply_text(aa)
+            print(aa)
             cool =""
         cool+=aa
+
     await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
 
     editable1= await m.reply_text("**Now send the Batch ID to Download**")
