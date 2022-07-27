@@ -120,14 +120,12 @@ async def account_login(bot: Client, m: Message):
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
 # Making a get request
-response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
-decoded_data=response.content.decode('utf-8-sig')
+    response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
+    decoded_data=response.content.decode('utf-8-sig')
 # printing request content
-b_data = response.json()['data']['batchData']
+    b_data = response.json()['data']['batchData']
 #print("Response as JSON: ",b_data.json())
 #print(b_data)
-
-
     cool=""
     for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
