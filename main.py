@@ -83,13 +83,13 @@ async def cancel(_, m):
 async def restart_handler(_, m):
     await m.reply_text("Restarted!", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
-
 ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1VmXspFMod94-pT7xDCvmBEYt8U7f0mRB6XnG5huPE7I9qjhDW0qpx3LRyTD9WX7W6JvUGtgKN-qf1pJoZO-QXBMIykDivtAOgkJOmN-kyv4m_F0thrJ45z95hqWON0nsKBwvd"
 bc_url = (
     f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos"
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
+
 url="https://elearn.crwilladmin.com/api/v1/"
 
 info= {
@@ -99,87 +99,117 @@ info= {
     "deviceVersion":"Pie(Android 9.0)",
     "email":"",
 }
-token="c3a8efc70a3d64bb84256b89be8e2e537c9ad844"
 
-# Making a get request
-response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
-decoded_data=response.content.decode('utf-8-sig')
-# printing request content
-b_data = response.json()['data']['batchData']
-#print("Response as JSON: ",b_data.json())
-#print(b_data)
-cool=""
-for data in b_data:
+@bot.on_message(filters.command(["login"])& ~filters.edited)
+async def account_login(bot: Client, m: Message):
+    editable = await m.reply_text(
+        "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
+    )
+
+    input1: Message = await bot.listen(editable.chat.id)
+    raw_text = input1.text
+    info["email"] = raw_text.split("*")[0]
+    info["password"] = raw_text.split("*")[1]
+    await m.reply_text(input1)
+    await input1.delete(True)
+
+    login_response=requests.post(url+"login-other",info)
+    token=login_response.json( )["data"]["token"]
+    await editable.edit("**login Successful**")
+    #await editable.edit(f"You have these Batches :-\n{raw_text}")
+    
+    url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
+    b_data = url1.json()['data']['batchData']
+
+    cool=""
+    for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
         aa =f" ```{data['id']}```      - **{data['batchName']}**\n{data['instructorName']}\n\n"
         #aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
         if len(f'{cool}{aa}')>4096:
-            print(aa)
+            await m.reply_text(aa)
             cool =""
         cool+=aa
+    await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
 
-print(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
+    editable1= await m.reply_text("**Now send the Batch ID to Download**")
+    input2 = message = await bot.listen(editable.chat.id)
+    raw_text2 = input2.text
 
-input2= input("**Now send the Batch ID to Download**")
-
-#topic id url = https://elearn.crwilladmin.com/api/v1/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
-url2 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/batch-topic/"+input2+"?type=class&token="+token)
-topicid = url2.json()["data"]["batch_topic"]
-json_dataT = json.dumps(topicid)
-bn =url2.json()["data"]["batch_detail"]["name"]
-json_dataB = json.dumps(bn)
-print(json_dataT)
-#await m.reply_text(f'Batch details of **{bn}** are :')
-vj=""
-for data in topicid:
-    tids = (data["id"])
-    idid=f"{tids}&"
-    if len(f"{vj}{idid}")>4096:
-       print(idid)
-       vj = ""
-    vj+=idid
-vp = ""
-for data in topicid:
-    tn = (data["topicName"])
-    tns=f"{tn}&"
-    if len(f"{vp}{tn}")>4096:
-       print(tns)
-vp=""
-vp+=tns
+# topic id url = https://elearn.crwilladmin.com/api/v1/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
+    url2 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
+    topicid = url2.json()["data"]["batch_topic"]
+    bn =url2.json()["data"]["batch_detail"]["name"]
+#     await m.reply_text(f'Batch details of **{bn}** are :')
+    vj=""
+    for data in topicid:
+        tids = (data["id"])
+        idid=f"{tids}&"
+        if len(f"{vj}{idid}")>4096:
+            await m.reply_text(idid)
+            vj = ""
+        vj+=idid
         
-cool1 = ""    
-for data in topicid:
-    t_name=(data["topicName"])
-    tid = (data["id"])
+    
+    
+    vp = ""
+    for data in topicid:
+        tn = (data["topicName"])
+        tns=f"{tn}&"
+        if len(f"{vp}{tn}")>4096:
+            await m.reply_text(tns)
+            vp=""
+        vp+=tns
         
-urlx = "https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+input2+"?redirectBy=mybatch&topicId="+tid+"&token="+token
-ffx = requests.get(urlx)
-vcx =ffx.json()["data"]["class_list"]["batchDescription"]
-vvx =ffx.json()["data"]["class_list"]["classes"]
-vvx.reverse()
-zz= len(vvx)
-BBB = f"{'**TOPIC-ID - TOPIC - VIDEOS**'}"
-hh = f"```{tid}```     - **{t_name} - ({zz})**\n"
+    cool1 = ""    
+    for data in topicid:
+        t_name=(data["topicName"])
+        tid = (data["id"])
         
-#hh = f"**Topic -** {t_name}\n**Topic ID - ** ```{tid}```\nno. of videos are : {zz}\n\n"
+        urlx = "https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+tid+"&token="+token
+        ffx = requests.get(urlx)
+        vcx =ffx.json()["data"]["class_list"]["batchDescription"]
+        vvx =ffx.json()["data"]["class_list"]["classes"]
+        vvx.reverse()
+        zz= len(vvx)
+        BBB = f"{'**TOPIC-ID - TOPIC - VIDEOS**'}"
+        hh = f"```{tid}```     - **{t_name} - ({zz})**\n"
         
-if len(f'{cool1}{hh}')>4096:
-   print(hh)
-   cool1=""
-cool1+=hh
-print(f'Batch details of **{bn}** are:\n\n{BBB}\n\n{cool1}\n\n**{vcx}**')
-#await m.reply_text(f'**{vcx}**')
-#await m.reply_text(f'```{vj}```')
+#         hh = f"**Topic -** {t_name}\n**Topic ID - ** ```{tid}```\nno. of videos are : {zz}\n\n"
+        
+        if len(f'{cool1}{hh}')>4096:
+            await m.reply_text(hh)
+            cool1=""
+        cool1+=hh
+    await m.reply_text(f'Batch details of **{bn}** are:\n\n{BBB}\n\n{cool1}\n\n**{vcx}**')
+#     await m.reply_text(f'**{vcx}**')
+#     await m.reply_text(f'```{vj}```')
 
-input4=input("**Now send the Resolution**")
-raw_text3= input(f"Now send the **Topic IDs** to Download\n\nSend like this **1&2&3&4** so on\nor copy paste or edit **below ids** according to you :\n\n**Enter this to download full batch :-**\n```{vj}```")
+    editable3= await m.reply_text("**Now send the Resolution**")
+    input4 = message = await bot.listen(editable.chat.id)
+    raw_text4 = input4.text
 
+    editable4= await m.reply_text("Now send the **Thumb url** Eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
+    input6 = message = await bot.listen(editable.chat.id)
+    raw_text6 = input6.text
+
+
+    thumb = input6.text
+    if thumb.startswith("http://") or thumb.startswith("https://"):
+        getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
+        thumb = "thumb.jpg"
+    else:
+        thumb == "no"
+    
+    editable2= await m.reply_text(f"Now send the **Topic IDs** to Download\n\nSend like this **1&2&3&4** so on\nor copy paste or edit **below ids** according to you :\n\n**Enter this to download full batch :-**\n```{vj}```")
+    
+    input3 = message = await bot.listen(editable.chat.id)
+    raw_text3 = input3.text
     
 #     editable9= await m.reply_text(f"Now send the **Topic Names**\n\nSend like this **1&2&3&4** and so on\nor copy paste or edit **below names according to you in Order of ids you entered above** :\n\n**Enter this to download full batch :-**\n```{vp}```")
     
 #     input9 = message = await bot.listen(editable.chat.id)
 #     raw_text9 = input9.text
-  
     try:
         xv = raw_text3.split('&')
         for y in range(0,len(xv)):
@@ -194,13 +224,13 @@ raw_text3= input(f"Now send the **Topic IDs** to Download\n\nSend like this **1&
             
             url3 = "https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+t+"&token="+token   
             ff = requests.get(url3)
-            vc =ff.json()["data"]["class_list"]["batchDescription"]
+            #vc =ff.json()["data"]["class_list"]["batchDescription"]
             mm = ff.json()["data"]["class_list"]["batchName"]
             
             vv =ff.json()["data"]["class_list"]["classes"]
             vv.reverse()
-            clan =f"**{vc}**\n\nNo of links found in topic-id {raw_text3} are **{len(vv)}**"
-            await m.reply_text(clan)
+            #clan =f"**{vc}**\n\nNo of links found in topic-id {raw_text3} are **{len(vv)}**"
+            #await m.reply_text(clan)
             count = 1
             try:
                 for data in vv:
@@ -208,7 +238,7 @@ raw_text3= input(f"Now send the **Topic IDs** to Download\n\nSend like this **1&
                     lessonName = (data["lessonName"]).replace("/", "_")
                     
                     bcvid = (data["lessonUrl"][0]["link"])
-                     #lessonName = re.sub('\|', '_', cf)
+#                     lessonName = re.sub('\|', '_', cf)
                     
                 
                 
@@ -231,9 +261,12 @@ raw_text3= input(f"Now send the **Topic IDs** to Download\n\nSend like this **1&
                         
                     else:
                         link="https://www.youtube.com/embed/"+bcvid
-                     #await m.reply_text(link)
+                    # await m.reply_text(link)
 
-                    raw_text4 = "480"
+                    #editable3= await m.reply_text("**Now send the Resolution**")
+                    #input4 = message = await bot.listen(editable.chat.id)
+                    #raw_text4 = input4.text
+
                     cc = f"**{count}) Title :** {lessonName}\n\n**Quality :** {raw_text4}\n**Batch :** {mm}"
                     Show = f"**Downloading:-**\n**Title -** ```{lessonName}\n\nQuality - {raw_text4}```\n\n**Url :-** ```{link}```"
                     prog = await m.reply_text(Show)
@@ -243,7 +276,7 @@ raw_text3= input(f"Now send the **Topic IDs** to Download\n\nSend like this **1&
                             ytf = f'bestvideo[height<={raw_text4}][ext=mp4]+bestaudio[ext=m4a]'
                         elif raw_text4 == "360":
                             ytf = 18
-e                        elif raw_text4 == "720":
+                        elif raw_text4 == "720":
                             ytf = 22
                         else:
                             ytf = 18
