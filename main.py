@@ -114,10 +114,12 @@ async def account_login(bot: Client, m: Message):
     await input1.delete(True)
     
     login_response=requests.post(url+"login-other",info)
-    decoded_data=login_response.content.decode('utf-8-sig')
-    token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
+    
+    editable12= await m.reply_text("**Now send the Token to Download**")
+    input22 = message = await bot.listen(editable12.chat.id)
+    token = input2.text
     
 # Making a get request
     response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
