@@ -42,7 +42,7 @@ import os
 import re
 import sys
 import requests 
-
+from urllib.request import urlopen
 bot = Client(
     "CW",
     bot_token=os.environ.get("BOT_TOKEN"),
@@ -104,17 +104,12 @@ info= {
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(
-        "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
+        "Send **Login token find it in login queery using HTTP Carany**"
     )
 
     input1: Message = await bot.listen(editable.chat.id)
-    raw_text = input1.text
-    info["email"] = raw_text.split("*")[0]
-    info["password"] = raw_text.split("*")[1]
-    await input1.delete(True)
-
-    login_response=requests.post(url+"login-other",info)
-    token=login_response.json( )["data"]["token"]
+    token= input1.text
+    await token.delete(True)
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
