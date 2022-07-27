@@ -109,7 +109,6 @@ async def account_login(bot: Client, m: Message):
 
     input1: Message = await bot.listen(editable.chat.id)
     token= input1.text
-    await token.delete(True)
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
