@@ -115,7 +115,10 @@ async def account_login(bot: Client, m: Message):
     #info["password"] = raw_text.split("*")[1]
     #await m.reply_text(raw_text)
     #await input1.delete(True)
-    
+    headers = {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+}
     login_response=requests.post(url+"login-other",info)
     await m.reply_text(login_response.status_code)
     
