@@ -96,7 +96,7 @@ url="https://elearn.crwilladmin.com/api/v1/"
 info= {
  "deviceType":"android",
     "password":"qwerty321",
-    "deviceIMEI":""
+    "deviceIMEI":"",
     "deviceModel":"Asus ASUS_X00TD",
     "deviceVersion":"",
     "email":"8468056864",
