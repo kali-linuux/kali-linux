@@ -114,7 +114,6 @@ async def account_login(bot: Client, m: Message):
     
     url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
     b_data = url1.json()['data']['batchData']
-    except JSONDecodeError as e:
 
     cool=""
     for data in b_data:
