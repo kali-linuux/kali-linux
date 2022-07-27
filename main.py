@@ -104,17 +104,25 @@ info= {
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(
-        "Send **Login token find it in login queery using HTTP Carany**"
+        "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
 
     input1: Message = await bot.listen(editable.chat.id)
-    token= input1.text
+    raw_text = input1.text
+    info["email"] = raw_text.split("*")[0]
+    info["password"] = raw_text.split("*")[1]
+    await m.reply_text(raw_text)
+    await input1.delete(True)
+
+    login_response=requests.post(url+"login-other",info)
+    login_response=login_response.headers['content-type']
+    token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
     url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
     b_data = url1.json()['data']['batchData']
-
+    
     cool=""
     for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
