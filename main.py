@@ -114,7 +114,10 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text(raw_text)
     await input1.delete(True)
     
-    #headers = {'Content-Type': 'application/json'}
+    headers = {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+}
     login_response=requests.post(url+"login-other",info)
     decoded_data=login_response.content.decode('utf-8-sig')
     #data = json.loads(decoded_data)
@@ -124,10 +127,11 @@ async def account_login(bot: Client, m: Message):
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
-    decoded_data=url1.content.decode('utf-8-sig')
-    b_data = decoded_data.json()['data']['batchData']
-    
+# Making a get request
+response = requests.get('https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token=c1c5172260b7f679e32ccb06ac5f04f84fecfbf3')
+
+# printing request content
+b_data = response.json()['data']['batchData']
     cool=""
     for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
