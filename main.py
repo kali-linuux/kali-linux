@@ -144,11 +144,10 @@ for data in b_data:
             print(aa)
             cool =""
         cool+=aa
-    await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
-
-    editable1= await m.reply_text("**Now send the Batch ID to Download**")
-    input2 = message = await bot.listen(editable.chat.id)
-    raw_text2 = input2.text
+  await editable.edit(f'{"**You have these batches :-**"}\n\n{FFF}\n\n{cool}')
+  editable1= await m.reply_text("**Now send the Batch ID to Download**")
+  input2 = message = await bot.listen(editable.chat.id)
+  raw_text2 = input2.text
 
 # topic id url = https://elearn.crwilladmin.com/api/v1/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
     url2 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/batch-topic/"+raw_text2+"?type=class&token="+token)
