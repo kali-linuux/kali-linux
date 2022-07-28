@@ -106,6 +106,7 @@ async def account_login(bot: Client, m: Message):
     #info["password"] = raw_text.split("*")[1]
     #await input1.delete(True)
     headers = {
+           'Protocol': 'h2'
            'Content-Type': 'application/json',
            'Accept': 'application/json'}
     login_response=requests.post(url+"login-other",info)
@@ -117,7 +118,7 @@ async def account_login(bot: Client, m: Message):
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
-    response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token,+ h2)
+    response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token h2,)
     decoded_data=response.content.decode('utf-8-sig')
     b_data = response.json()['data']['batchData']
 
