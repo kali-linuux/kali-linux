@@ -51,8 +51,7 @@ logger = logging.getLogger()# thumb = os.environ.get("THUMB")# if thumb.startswi
 
 @bot.on_message(filters.command(["start"]))
 async def start(bot, update):
-	await update.reply_text(''
-		'
+	await update.reply_text('''
 
 		█▄▄█░░▄▀██▀▀█▄▀█▀██░█▀█▀█▄██▄▄█▀██▄▄█░██▄██▄█░█░
 
@@ -63,8 +62,7 @@ async def start(bot, update):
 
 		**
 		🅱🅾🆃🅼🅰🅳🅴🅱🆈 **🅰🅱🅷🅸🆂🅷🅴🅺🅱🅻🅰🅲🅺🅾🆄🆃 **
-		''
-		')
+		''')
 
 		@bot.on_message(filters.command(["cancel"])) async def cancel(_, m):
 			editable = await m.reply_text("Canceling All process Plz wait")
@@ -72,9 +70,8 @@ async def start(bot, update):
 			await m.reply_text("Restarted!", True)
 		os.execl(sys.executable, sys.executable, *sys.argv) ACCOUNT_ID = "6206459123001"
 		BCOV_POLICY = "BCpkADawqM1VmXspFMod94-pT7xDCvmBEYt8U7f0mRB6XnG5huPE7I9qjhDW0qpx3LRyTD9WX7W6JvUGtgKN-qf1pJoZO-QXBMIykDivtAOgkJOmN-kyv4m_F0thrJ45z95hqWON0nsKBwvd"
-		bc_url = (			f "https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos"
-	) bc_hdr = { "BCOV-POLICY": BCOV_POLICY
-		}
+		bc_url = (			f "https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
+		bc_hdr = { "BCOV-POLICY": BCOV_POLICY}
 
 		url = "https://elearn.crwilladmin.com/api/v1/"
 
