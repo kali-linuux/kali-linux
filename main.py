@@ -42,8 +42,7 @@ import logging
 import os
 import re
 import sys
-import requests 
-import simplejson
+import requests
 from json.decoder import JSONDecodeError
 
 import requests
