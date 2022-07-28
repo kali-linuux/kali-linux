@@ -6,4 +6,6 @@ pyromod
 yt-dlp
 ffmpeg
 psutil
-
+hyper
+helper
+simplejson
