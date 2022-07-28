@@ -41,8 +41,7 @@ import re
 import sys
 import requests
 import simplejson
-from json.decoder
-import JSONDecodeError
+from json.decoder import JSONDecodeError
 bot = Client(	"CW",
 	bot_token = os.environ.get("BOT_TOKEN"),
 	api_id = int(os.environ.get("API_ID")),
