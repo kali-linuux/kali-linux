@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019-present Dan <https://github.com/delivrance>
+#  Copyright (c) 2019-present Dan <https://github.com/delivrance>e
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -110,10 +110,7 @@ async def account_login(bot: Client, m: Message):
            'Content-Type': 'application/json',
            'Accept': 'application/json'}
     #login_response=requests.post(url+"login-other",info)
-    
-    editable12= await m.reply_text("**Now send the Token to Download**")
-    input22 = message = await bot.listen(editable12.chat.id)
-    token = input22.text
+    token = "95c132dd58632789d0c71c9e87e577aa839091c7"
     #token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
