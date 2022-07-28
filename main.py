@@ -23,25 +23,18 @@
 import requests
 import json
 import subprocess
-from pyrogram.types.messages_and_media
-import message
+from pyrogram.types.messages_and_media import message
 import helper
-from pyromod
-import listen
-from pyrogram.types
-import Message
+from pyromod import listen 
+from pyrogram.types import Message
 import tgcrypto
 import pyrogram
-from pyrogram
-import Client, filters
+from pyrogram import Client, filters
 import time
-from pyrogram.types
-import User, Message
-from p_bar
-import progress_bar
+from pyrogram.types import User, Message
+from p_bar import progress_bar
 import time
-from subprocess
-import getstatusoutput
+from subprocess import getstatusoutput
 import logging
 import os
 import re
