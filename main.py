@@ -117,8 +117,13 @@ async def account_login(bot: Client, m: Message):
     #token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
-    
-    response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token,)
+    from hyper import HTTPConnection
+    import hyper
+    from hyper import HTTPConnection
+    conn = HTTPConnection('elearn.crwilladmin.com:443')
+    await m.reply_text(conn) 
+    r = httpx.Client(http2=True)
+    response = r.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token,)
     await m.reply_text(response.status_code)
     decoded_data=response.content.decode('utf-8-sig')
     b_data = response.json()['data']['batchData']
