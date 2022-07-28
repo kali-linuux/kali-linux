@@ -69,20 +69,22 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url = (f"https://elearn.crwilladmin.com/api/v1/login-other")
-info = {"password": "Redminote4x", "email": "8468056864"}
+info = {"password": "Redminote4x",
+        "email": "8468056864"
+       }
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
+    #editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
 
-    input1: Message = await bot.listen(editable.chat.id)
-    raw_text = input1.text
+    #input1: Message = await bot.listen(editable.chat.id)
+    #raw_text = input1.text
     # info["email"] = raw_text.split("*")[0]
     # info["password"] = raw_text.split("*")[1]
     # await input1.delete(True)
 
     login_response = requests.post(url, info)
-    response_json = login_response.decode('utf-8')
+    #response_json = login_response.decode('utf-8')
     print("printing the response {}", json.dumps(response_json))
     token = response_json.json()["data"]["token"]
     await editable.edit("**login Successful**")
