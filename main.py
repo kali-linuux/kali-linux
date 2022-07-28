@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019-present Dan <https://github.com/delivrance>e
+#  Copyright (c) 2019-present Dan <https://github.com/delivrance>
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@
 
 
 import requests
-import requests
 import json
 import subprocess
 from pyrogram.types.messages_and_media import message
@@ -41,9 +40,6 @@ from subprocess import getstatusoutput
 import logging
 import os
 import re
-import sys
-import requests
-from json.decoder import JSONDecodeError
 
 import requests
 bot = Client(
@@ -63,20 +59,14 @@ logger = logging.getLogger()
 
 @bot.on_message(filters.command(["start"]))
 async def start(bot, update):
-      await update.reply_text('''
-
-█▄▄ █░░ ▄▀█ █▀▀ █▄▀         █▀█ █░█ ▀█▀
-█▄█ █▄▄ █▀█ █▄▄ █░█         █▄█ █▄█ ░█░
-
-🅷🅸 🅸 🅰️🅼 **🅲🅰️🆁🅴🅴🆁🆆🅸🅻🅻 🅳🅾️🆆🅽🅻🅾️🅰️🅳🅴🆁**
-
-**🅽🅾🆆:-** 🅿🆁🅴🆂🆂 **/login** 🆃🅾 🅲🅾🅽🆃🅸🅽🆄🅴..
-
-**🅱🅾🆃 🅼🅰🅳🅴 🅱🆈 **🅰🅱🅷🅸🆂🅷🅴🅺 🅱🅻🅰🅲🅺🅾🆄🆃**
-         ''')
+       await update.reply_text("𝕳𝖎 𝖎 𝖆𝖒 **𝕮𝖆𝖗𝖊𝖊𝖗𝖜𝖎𝖑𝖑 𝕯𝖔𝖜𝖓𝖑𝖔𝖆𝖉𝖊𝖗**.\n\n"
+                              "**𝒩𝒪𝒲:-̄** "
+                                       
+                                       "ℙ𝕣𝕖𝕤𝕤 **/login** 𝕥𝕠 𝕔𝕠𝕟𝕥𝕚𝕟𝕦𝕖..\n\n"
+                                     "Bᴏᴛ ᴍᴀᴅᴇ ʙʏ ** BʟᴀᴄᴋOᴜT **" )
 
 ACCOUNT_ID = "6206459123001"
-BCOV_POLICY = "BCpkADawqM1VmXspFMod94-pT7xDCvmBEYt8U7f0mRB6XnG5huPE7I9qjhDW0qpx3LRyTD9WX7W6JvUGtgKN-qf1pJoZO-QXBMIykDivtAOgkJOmN-kyv4m_F0thrJ45z95hqWON0nsKBwvd"
+BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtdIQJpfMPB37L_VJQxTKeNeLO2Eac_yMywEgyV9GjFDQ2LTiT4FEiHhKAUvdbx9ku6fGnQKSMB8J5uIDd"
 bc_url = (
     f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos"
 )
@@ -84,15 +74,13 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url="https://elearn.crwilladmin.com/api/v1/"
 
-#info= {
- #"deviceType":"android",
- #   "password":"qwerty321",
- #   "deviceIMEI":"",
-  #  "deviceModel":"Asus ASUS_X00TD",
- #   "deviceVersion":"",
-  #  "email":"8468056864",
-  #  "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
-#}
+info= {
+ "deviceType":"android",
+    "password":"",
+    "deviceModel":"Asus ASUS_X00TD",
+    "deviceVersion":"Pie(Android 9.0)",
+    "email":"",
+}
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
@@ -100,30 +88,19 @@ async def account_login(bot: Client, m: Message):
         "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
 
-    #input1: Message = await bot.listen(editable.chat.id)
-    #raw_text = input1.text
-    #info["email"] = raw_text.split("*")[0]
-    #info["password"] = raw_text.split("*")[1]
-    #await input1.delete(True)
-    headers = {
-           'Protocol': 'h2',
-           'Content-Type': 'application/json',
-           'Accept': 'application/json'}
-    #login_response=requests.post(url+"login-other",info)
-    token = "95c132dd58632789d0c71c9e87e577aa839091c7"
-    #token=login_response.json( )["data"]["token"]
+    input1: Message = await bot.listen(editable.chat.id)
+    raw_text = input1.text
+    info["email"] = raw_text.split("*")[0]
+    info["password"] = raw_text.split("*")[1]
+    await input1.delete(True)
+
+    login_response=requests.post(url+"login-other",info)
+    token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
-    from hyper import HTTPConnection
-    import hyper
-    from hyper import HTTPConnection
-    conn = HTTPConnection('elearn.crwilladmin.com:443')
-    await m.reply_text(conn) 
-    r = httpx.Client(http2=True)
-    response = r.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token,)
-    await m.reply_text(response.status_code)
-    decoded_data=response.content.decode('utf-8-sig')
-    b_data = response.json()['data']['batchData']
+    
+    url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token)
+    b_data = url1.json()['data']['batchData']
 
     cool=""
     for data in b_data:
