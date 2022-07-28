@@ -39,6 +39,7 @@ from subprocess import getstatusoutput
 import logging
 import os
 import re
+import simplejson
 
 import requests
 
