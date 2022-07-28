@@ -75,8 +75,8 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url="https://elearn.crwilladmin.com/api/v1/login-other"
 
 info= {
-    "email": "",
-    "password": ""
+    "password": "Redminote4x",
+    "email": "8468056864"
 }
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
@@ -87,9 +87,9 @@ async def account_login(bot: Client, m: Message):
 
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
-    info["email"] = raw_text.split("*")[0]
-    info["password"] = raw_text.split("*")[1]
-    await input1.delete(True)
+    #info["email"] = raw_text.split("*")[0]
+    #info["password"] = raw_text.split("*")[1]
+    #await input1.delete(True)
 
     login_response=requests.post(url,info)
     print(login_response)
