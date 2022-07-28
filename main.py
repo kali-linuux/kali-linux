@@ -72,7 +72,7 @@ bc_url = (
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
-url="https://elearn.crwilladmin.com/api/v1/"
+url="https://elearn.crwilladmin.com/api/v1/login-other"
 
 info= {
  "deviceType":"android",
@@ -94,7 +94,7 @@ async def account_login(bot: Client, m: Message):
     info["password"] = raw_text.split("*")[1]
     await input1.delete(True)
 
-    login_response=requests.post(url+"login-other",info)
+    login_response=requests.post(url,info)
     await m.reply_text(login_response)
     print(login_response)
     token=login_response.json( )["data"]["token"]
