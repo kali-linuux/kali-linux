@@ -68,7 +68,7 @@ BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtd
 bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
-url = "https://elearn.crwilladmin.com/api/v1/login-other"
+url = (f"https://elearn.crwilladmin.com/api/v1/login-other")
 info = {"password": "Redminote4x", "email": "8468056864"}
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
