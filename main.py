@@ -84,15 +84,15 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url="https://elearn.crwilladmin.com/api/v1/"
 
-info= {
- "deviceType":"android",
-    "password":"qwerty321",
-    "deviceIMEI":"",
-    "deviceModel":"Asus ASUS_X00TD",
-    "deviceVersion":"",
-    "email":"8468056864",
-    "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
-}
+#info= {
+ #"deviceType":"android",
+ #   "password":"qwerty321",
+ #   "deviceIMEI":"",
+  #  "deviceModel":"Asus ASUS_X00TD",
+ #   "deviceVersion":"",
+  #  "email":"8468056864",
+  #  "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
+#}
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
@@ -109,8 +109,8 @@ async def account_login(bot: Client, m: Message):
            'Protocol': 'h2',
            'Content-Type': 'application/json',
            'Accept': 'application/json'}
-    login_response=requests.post(url+"login-other",info)
-    await m.reply_text(login_response.status_code)
+    #login_response=requests.post(url+"login-other",info)
+    
     editable12= await m.reply_text("**Now send the Token to Download**")
     input22 = message = await bot.listen(editable12.chat.id)
     token = input22.text
@@ -119,6 +119,7 @@ async def account_login(bot: Client, m: Message):
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
     response = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token,)
+    await m.reply_text(response.status_code)
     decoded_data=response.content.decode('utf-8-sig')
     b_data = response.json()['data']['batchData']
 
