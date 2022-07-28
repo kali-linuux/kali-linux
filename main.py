@@ -133,7 +133,7 @@ async def account_login(bot: Client, m: Message):
 #print("Response as JSON: ",b_data.json())
 #print(b_data)
 cool=""
-    for data in b_data:
+  for data in b_data:
         FFF="**BATCH-ID - BATCH NAME - INSTRUCTOR**"
         aa =f" ```{data['id']}```      - **{data['batchName']}**\n{data['instructorName']}\n\n"
         #aa=f"**Batch Name -** {data['batchName']}\n**Batch ID -** ```{data['id']}```\n**By -** {data['instructorName']}\n\n"
