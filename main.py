@@ -69,10 +69,10 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url = (f"https://elearn.crwilladmin.com/api/v1/login-other")
-info = {
-        "password": "Redminote4x",
-        "email": "8468056864"
-       }
+info = {"deviceType": "android", "password": "Redminote4x", "deviceIMEI": "", "deviceModel": "Realme RMX2001", "deviceVersion": "R(Android 11.0)",
+        "email": "abhishek.bedi.pro08@gmail.com",
+        "deviceToken": "f4mXlDT-TCq2ANGCYDvqT-:APA91bGtLxdBmCGI7xWrZrfrLKZlfEYzmIaDeOVJg4tBo49tkPM6kmjBENG4cKo5dIcOolONieT5G-e8pUCW9gLKygPm0TXL85IC44fJQ6Gd8-dv_Lpq_5u7B_ZK1zpz6dOmkSdNBjNe"}
+
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
