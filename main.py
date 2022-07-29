@@ -68,32 +68,18 @@ BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtd
 bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
-url = (f"https://elearn.crwilladmin.com/api/v1/login-other")
-info = {"deviceType": "android", "password": "Redminote4x", "deviceIMEI": "", "deviceModel": "Realme RMX2001", "deviceVersion": "R(Android 11.0)",
-        "email": "abhishek.bedi.pro08@gmail.com",
-        "deviceToken": "f4mXlDT-TCq2ANGCYDvqT-:APA91bGtLxdBmCGI7xWrZrfrLKZlfEYzmIaDeOVJg4tBo49tkPM6kmjBENG4cKo5dIcOolONieT5G-e8pUCW9gLKygPm0TXL85IC44fJQ6Gd8-dv_Lpq_5u7B_ZK1zpz6dOmkSdNBjNe"}
-header = {"authority": "elearn.crwilladmin.com", "accept": "application/json", "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-    "content-type": "application/x-www-form-urlencoded", "origin": "https://web.careerwill.com", "referer": "https://web.careerwill.com/", "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "macOS", "sec-fetch-dest": "empty", "sec-fetch-mode": "cors", "sec-fetch-site": "cross-site",
-    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"}
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    #editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
+    editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
 
-    #input1: Message = await bot.listen(editable.chat.id)
-    #raw_text = input1.text
-    # info["email"] = raw_text.split("*")[0]
-    # info["password"] = raw_text.split("*")[1]
-    # await input1.delete(True)
-
-    login_response = requests.post(url, info, header)
-    print("printing the response {}", login_response.text)
-    token = login_response.json()["data"]["token"]
+    input1: Message = await bot.listen(editable.chat.id)
+    token = "b599c6421f86bfe562e7d9b8dd7457826af223f9"
     await editable.edit("**login Successful**")
     # await editable.edit(f"You have these Batches :-\n{raw_text}")
 
     url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token=" + token)
+    print(url1)
     b_data = url1.json()['data']['batchData']
 
     cool = ""
