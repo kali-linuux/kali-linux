@@ -69,7 +69,8 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 url = (f"https://elearn.crwilladmin.com/api/v1/login-other")
-info = {"password": "Redminote4x",
+info = {
+        "password": "Redminote4x",
         "email": "8468056864"
        }
 
