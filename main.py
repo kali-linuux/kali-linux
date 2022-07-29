@@ -79,7 +79,7 @@ async def account_login(bot: Client, m: Message):
     # await editable.edit(f"You have these Batches :-\n{raw_text}")
 
     url1 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token=" + token)
-    print(url1)
+    print(url1.text)
     b_data = url1.json()['data']['batchData']
 
     cool = ""
