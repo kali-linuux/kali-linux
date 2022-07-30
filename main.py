@@ -69,7 +69,7 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url="https://elearn.crwilladmin.com/api/v1/"
 
-headers ={
+hdr ={
          "Content-Length": "45",
          "Accept": "application/json",
          "Content-Type": "application/x-www-form-urlencoded",
@@ -79,7 +79,7 @@ headers ={
          "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
        }
 
-info= {"email":"","password":""}
+data= {"email":"","password":""}
 os.makedirs("./htmls", exist_ok=True)
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
@@ -92,7 +92,7 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text(raw_text)
     await input1.delete(True)
 
-    login_response=requests.post(url+"login-other",headers,info).json()
+    login_response=requests.post(url+"login-other" data=data, headers=hdr).json()
     #await m.reply_text(login_response.status_code)
     token = login_response["data"]["token"]
     await m.reply_text(token)
