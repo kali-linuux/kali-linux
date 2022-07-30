@@ -1,13 +1,7 @@
-Pyrogram==1.2.9
 async-lru==1.0.2
 charset-normalizer==2.0.12
-pycryptodome==3.10.1
-Pyrogram==1.2.9
-tgcrypto
-decode
 requests==2.27.1
 urllib3==1.26.8
-pyromod==1.5
 yt-dlp
 ffmpeg
 psutil
