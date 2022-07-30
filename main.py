@@ -83,8 +83,11 @@ async def account_login(bot: Client, m: Message):
     #info["email"] = raw_text.split("*")[0]
     #info["password"] = raw_text.split("*")[1]
     #await input1.delete(True)
-    
-    token="2d3c7fae4479fc02a8c53d4f909f685e87a9d294"
+    scraper = cloudscraper.create_scraper()
+    r = scraper.post(url,info).text
+    y = json.loads(r)
+    print (y)
+    token=y.json()["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
