@@ -67,14 +67,36 @@ ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtdIQJpfMPB37L_VJQxTKeNeLO2Eac_yMywEgyV9GjFDQ2LTiT4FEiHhKAUvdbx9ku6fGnQKSMB8J5uIDd"
 bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
+url="https://elearn.crwilladmin.com/api/v1/"
 
+info= {
+ "deviceType":"android",
+    "password":"",
+    "deviceIMEI":"",
+    "deviceModel":"Asus ASUS_xda",
+    "deviceVersion":"",
+    "email":"",
+    "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
+}
+os.makedirs("./htmls", exist_ok=True)
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
-
     input1: Message = await bot.listen(editable.chat.id)
-    token = "b599c6421f86bfe562e7d9b8dd7457826af223f9"
+    raw_text = input1.text
+    info["email"] = raw_text.split("*")[0]
+    info["password"] = raw_text.split("*")[1]
+    await m.reply_text(raw_text)
+    await input1.delete(True)
+    headers = {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+}
+    login_response=requests.post(url+"login-other",info).json()
+    await m.reply_text(login_response.status_code)
+    token = login_response["data"]["token"]
+    await m.reply_text(token)
     await editable.edit("**login Successful**")
     # await editable.edit(f"You have these Batches :-\n{raw_text}")
 
