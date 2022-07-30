@@ -17,7 +17,7 @@
 #  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 #  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 #  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN eTHE
 #  SOFTWARE
 
 
@@ -73,7 +73,7 @@ header ={
          "Host": "elearn.crwilladmin.com",
          "Content-Length": "45",
          "Accept": "application/json",
-         "Content-Type': "application/x-www-form-urlencoded",
+         "Content-Type": "application/x-www-form-urlencoded",
          "Sec-Ch-Ua-Platform": "Linux",
          "Origin": "https://web.careerwill.com",
          "Sec-Fetch-Site": "cross-site",
@@ -81,9 +81,8 @@ header ={
          "Sec-Fetch-Dest": "empty",
          "Referer": "https://web.careerwill.com/",
          "Accept-Encoding": "gzip, deflate",
-         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-         "Connection": "alive"
- }
+         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
+       }
 
 info= {
  "deviceType":"Linux",
