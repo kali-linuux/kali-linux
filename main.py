@@ -71,7 +71,7 @@ bc_url = (
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url = 'https://elearn.crwilladmin.com/api/v1/login-other'
-info = {"password": "Redminote4x", "email": "8468056864"}
+info = {"password": "", "email": ""}
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
@@ -103,7 +103,7 @@ async def account_login(bot: Client, m: Message):
          print(f'HTTP error occurred: {http_err}')
     except Exception as err:
          print(f'Other error occurred: {err}')
-    token=login_response.json( )["data"]["token"]
+    token=response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
