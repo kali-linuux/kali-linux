@@ -40,6 +40,7 @@ from subprocess import getstatusoutput
 import logging
 import os
 import re
+import cloudscraper
 
 bot = Client(
     "CW",
@@ -82,27 +83,8 @@ async def account_login(bot: Client, m: Message):
     #info["email"] = raw_text.split("*")[0]
     #info["password"] = raw_text.split("*")[1]
     #await input1.delete(True)
-    url = 'https://elearn.crwilladmin.com/api/v1/login-other'
-    info = {"email": "8468056864", "password": "Redminote4x"}
-    try:
-       response=requests.post(url,info)
-       status = response.status_code
-       if (status != 204 and response.headers["content-type"].strip().startswith("application/json")):
-            try:
-               json_response = response.json()
-               print(json_response)
-            except ValueError:
-               print('Bad Data from Server. Response content is not valid JSON')
-       elif (status != 204):
-            try:
-               print(response.text)
-            except ValueError:
-               print('Bad Data From Server. Reponse content is not valid text')
-    except HTTPError as http_err:
-         print(f'HTTP error occurred: {http_err}')
-    except Exception as err:
-         print(f'Other error occurred: {err}')
-    token=response.json( )["data"]["token"]
+    
+    token="2d3c7fae4479fc02a8c53d4f909f685e87a9d294"
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
