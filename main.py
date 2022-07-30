@@ -87,8 +87,8 @@ async def account_login(bot: Client, m: Message):
     editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text = input1.text
-    info["email"] = raw_text.split("*")[0]
-    info["password"] = raw_text.split("*")[1]
+    data["email"] = raw_text.split("*")[0]
+    data["password"] = raw_text.split("*")[1]
     await m.reply_text(raw_text)
     await input1.delete(True)
 
