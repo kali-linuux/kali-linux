@@ -105,7 +105,7 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text(raw_text)
     await input1.delete(True)
 
-    login_response=requests.post(url+"login-other",info,header).json()
+    login_response=requests.post(url+"login-other",info,headers).json()
     await m.reply_text(login_response.status_code)
     token = login_response["data"]["token"]
     await m.reply_text(token)
