@@ -70,7 +70,6 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url="https://elearn.crwilladmin.com/api/v1/"
 
 headers ={
-         "Host": "elearn.crwilladmin.com",
          "Content-Length": "45",
          "Accept": "application/json",
          "Content-Type": "application/x-www-form-urlencoded",
@@ -80,7 +79,7 @@ headers ={
          "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
        }
 
-info= {"email":"","password":""}
+info= {"email":""&"password":""}
 os.makedirs("./htmls", exist_ok=True)
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
