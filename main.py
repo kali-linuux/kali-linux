@@ -22,6 +22,7 @@
 
 
 import requests
+from requests.exceptions import HTTPError
 import json
 import subprocess
 from pyrogram.types.messages_and_media import message
@@ -64,7 +65,6 @@ ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtdIQJpfMPB37L_VJQxTKeNeLO2Eac_yMywEgyV9GjFDQ2LTiT4FEiHhKAUvdbx9ku6fGnQKSMB8J5uIDd"
 bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
-url="https://elearn.crwilladmin.com/api/v1/login-other"
 
 os.makedirs("./htmls", exist_ok=True)
 
@@ -77,6 +77,8 @@ async def account_login(bot: Client, m: Message):
     #data["password"] = raw_text.split("*")[1]
     #await m.reply_text(raw_text)
     #await input1.delete(True)
+   info = {"password": "Redminote4x", "email": "8468056864"}
+   url = 'https://elearn.crwilladmin.com/api/v1/login-other'
    try:
      response = requests.post(url,info)
      status = response.status_code
