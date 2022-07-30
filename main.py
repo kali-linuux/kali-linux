@@ -77,6 +77,8 @@ async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(
         "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
     )
+    info = {"password": "Redminote4x", "email": "8468056864"}
+    url = 'https://elearn.crwilladmin.com/api/v1/login-other'
 
     #input1: Message = await bot.listen(editable.chat.id)
     #raw_text = input1.text
