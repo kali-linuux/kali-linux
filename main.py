@@ -69,7 +69,7 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url="https://elearn.crwilladmin.com/api/v1/"
 
-header ={
+headers ={
          "Host": "elearn.crwilladmin.com",
          "Content-Length": "45",
          "Accept": "application/json",
@@ -104,10 +104,7 @@ async def account_login(bot: Client, m: Message):
     info["password"] = raw_text.split("*")[1]
     await m.reply_text(raw_text)
     await input1.delete(True)
-    headers = {
-           'Content-Type': 'application/json',
-           'Accept': 'application/json'
-}
+
     login_response=requests.post(url+"login-other",info,header).json()
     await m.reply_text(login_response.status_code)
     token = login_response["data"]["token"]
