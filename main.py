@@ -71,11 +71,9 @@ url="https://elearn.crwilladmin.com/api/v1/"
 
 headers ={
          "Host": "elearn.crwilladmin.com",
+         "Content-Length": "45",
          "Accept": "application/json",
          "Content-Type": "application/x-www-form-urlencoded",
-         "Sec-Ch-Ua-Platform": "Linux",
-         "Origin": "https://web.careerwill.com",
-         "Sec-Fetch-Site": "cross-site",
          "Sec-Fetch-Mode": "cors",
          "Referer": "https://web.careerwill.com/",
          "Accept-Encoding": "gzip, deflate",
