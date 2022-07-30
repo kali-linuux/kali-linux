@@ -77,21 +77,26 @@ async def account_login(bot: Client, m: Message):
     #data["password"] = raw_text.split("*")[1]
     #await m.reply_text(raw_text)
     #await input1.delete(True)
+   try:
+     response = requests.post(url,info)
+     status = response.status_code
+     if (status != 204 and response.headers["content-type"].strip().startswith("application/json")):
+        try:
+            json_response = response.json()
+            print(json_response)
+        except ValueError:
 
-    hdr ={
-         "Content-Length": "45",
-         "Accept": "application/json",
-         "Content-Type": "application/x-www-form-urlencoded",
-         "Sec-Fetch-Mode": "cors",
-         "Referer": "https://web.careerwill.com/",
-         "Accept-Encoding": "gzip, deflate",
-         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
-       }
-
-    info= {"email":"amanraw2@gmail.com","password":"qwerty321"}
-    login_response=requests.post(url,data=info, headers=hdr).json()
-    await m.reply_text(login_response.status_code)
-    token = login_response["data"]["token"]
+            print('Bad Data from Server. Response content is not valid JSON')
+     elif (status != 204):
+        try:
+            print(response.text)
+        except ValueError:
+            print('Bad Data From Server. Reponse content is not valid text')
+    except HTTPError as http_err:
+       print(f'HTTP error occurred: {http_err}')
+    except Exception as err:
+       print(f'Other error occurred: {err}')
+    token = response["data"]["token"]
     await m.reply_text(token)
     await editable.edit("**login Successful**")
     # await editable.edit(f"You have these Batches :-\n{raw_text}")
