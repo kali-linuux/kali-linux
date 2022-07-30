@@ -69,11 +69,27 @@ bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/vi
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 url="https://elearn.crwilladmin.com/api/v1/"
 
+header ={
+         "Host": "elearn.crwilladmin.com",
+         "Content-Length": "45",
+         "Accept": "application/json",
+         "Content-Type': "application/x-www-form-urlencoded",
+         "Sec-Ch-Ua-Platform": "Linux",
+         "Origin": "https://web.careerwill.com",
+         "Sec-Fetch-Site": "cross-site",
+         "Sec-Fetch-Mode": "cors",
+         "Sec-Fetch-Dest": "empty",
+         "Referer": "https://web.careerwill.com/",
+         "Accept-Encoding": "gzip, deflate",
+         "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+         "Connection": "alive"
+ }
+
 info= {
- "deviceType":"android",
+ "deviceType":"Linux",
     "password":"",
     "deviceIMEI":"",
-    "deviceModel":"Asus ASUS_xda",
+    "deviceModel":"",
     "deviceVersion":"",
     "email":"",
     "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
@@ -93,7 +109,7 @@ async def account_login(bot: Client, m: Message):
            'Content-Type': 'application/json',
            'Accept': 'application/json'
 }
-    login_response=requests.post(url+"login-other",info).json()
+    login_response=requests.post(url+"login-other",info,header).json()
     await m.reply_text(login_response.status_code)
     token = login_response["data"]["token"]
     await m.reply_text(token)
