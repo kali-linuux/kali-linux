@@ -103,7 +103,7 @@ except HTTPError as http_err:
 except Exception as err:
     print(f'Other error occurred: {err}')
 token = response["data"]["token"]
-await m.reply_text(token)
+ await m.reply_text(token)
 await editable.edit("**login Successful**")
 # await editable.edit(f"You have these Batches :-\n{raw_text}")
 
@@ -127,8 +127,7 @@ input2 = message = await bot.listen(editable.chat.id)
 raw_text2 = input2.text
 
 # topic id url = https://elearn.crwilladmin.com/api/v1/comp/batch-topic/881?type=class&token=d76fce74c161a264cf66b972fd0bc820992fe576
-url2 = requests.get(
-    "https://elearn.crwilladmin.com/api/v1/comp/batch-topic/" + raw_text2 + "?type=class&token=" + token)
+url2 = requests.get("https://elearn.crwilladmin.com/api/v1/comp/batch-topic/" + raw_text2 + "?type=class&token=" + token)
 topicid = url2.json()["data"]["batch_topic"]
 bn = url2.json()["data"]["batch_detail"]["name"]
 #     await m.reply_text(f'Batch details of **{bn}** are :')
