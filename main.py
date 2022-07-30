@@ -86,24 +86,23 @@ async def account_login(bot: Client, m: Message):
     await input1.delete(True)
 
     try:
-    response = requests.post(url, info)
-    status = response.status_code
-    if (status != 204 and response.headers["content-type"].strip().startswith("application/json")):
-        try:
-            json_response = response.json()
-            print(json_response)
-        except ValueError:
-
-            print('Bad Data from Server. Response content is not valid JSON')
-    elif (status != 204):
-        try:
-            print(response.text)
-        except ValueError:
-            print('Bad Data From Server. Reponse content is not valid text')
+       response=requests.post(url,info)
+       status = response.status_code
+       if (status != 204 and response.headers["content-type"].strip().startswith("application/json")):
+            try:
+               json_response = response.json()
+               print(json_response)
+            except ValueError:
+               print('Bad Data from Server. Response content is not valid JSON')
+       elif (status != 204):
+            try:
+               print(response.text)
+            except ValueError:
+               print('Bad Data From Server. Reponse content is not valid text')
     except HTTPError as http_err:
-       print(f'HTTP error occurred: {http_err}')
+         print(f'HTTP error occurred: {http_err}')
     except Exception as err:
-       print(f'Other error occurred: {err}')
+         print(f'Other error occurred: {err}')
     token=login_response.json( )["data"]["token"]
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
