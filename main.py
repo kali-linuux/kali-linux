@@ -70,8 +70,6 @@ bc_url = (
     f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos"
 )
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
-url = 'https://elearn.crwilladmin.com/api/v1/login-other'
-info = {"password": "", "email": ""}
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
@@ -84,7 +82,8 @@ async def account_login(bot: Client, m: Message):
     info["email"] = raw_text.split("*")[0]
     info["password"] = raw_text.split("*")[1]
     await input1.delete(True)
-
+    url = 'https://elearn.crwilladmin.com/api/v1/login-other'
+    info = {"email": "8468056864", "password": "Redminote4x"}
     try:
        response=requests.post(url,info)
        status = response.status_code
