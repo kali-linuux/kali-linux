@@ -67,7 +67,7 @@ ACCOUNT_ID = "6206459123001"
 BCOV_POLICY = "BCpkADawqM1474MvKwYlMRZNBPoqkJY-UWm7zE1U769d5r5kqTjG0v8L-THXuVZtdIQJpfMPB37L_VJQxTKeNeLO2Eac_yMywEgyV9GjFDQ2LTiT4FEiHhKAUvdbx9ku6fGnQKSMB8J5uIDd"
 bc_url = (f"https://edge.api.brightcove.com/playback/v1/accounts/{ACCOUNT_ID}/videos")
 bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
-url="https://elearn.crwilladmin.com/api/v1/"
+url="https://elearn.crwilladmin.com/api/v1/login-other"
 
 hdr ={
          "Content-Length": "45",
@@ -92,8 +92,8 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text(raw_text)
     await input1.delete(True)
 
-    login_response=requests.post(url+"login-other" data=data, headers=hdr).json()
-    #await m.reply_text(login_response.status_code)
+    login_response=requests.post(url,data=data, headers=hdr).json()
+    await m.reply_text(login_response.status_code)
     token = login_response["data"]["token"]
     await m.reply_text(token)
     await editable.edit("**login Successful**")
