@@ -77,8 +77,8 @@ async def account_login(bot: Client, m: Message):
     #data["password"] = raw_text.split("*")[1]
     #await m.reply_text(raw_text)
     #await input1.delete(True)
-   info ={"password": "Redminote4x", "email": "8468056864"}
-   url = 'https://elearn.crwilladmin.com/api/v1/login-other'
+ info ={"password": "Redminote4x", "email": "8468056864"}
+ url = 'https://elearn.crwilladmin.com/api/v1/login-other'
    try:
      response = requests.post(url,info)
      status = response.status_code
