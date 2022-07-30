@@ -71,28 +71,18 @@ url="https://elearn.crwilladmin.com/api/v1/"
 
 headers ={
          "Host": "elearn.crwilladmin.com",
-         "Content-Length": "45",
          "Accept": "application/json",
          "Content-Type": "application/x-www-form-urlencoded",
          "Sec-Ch-Ua-Platform": "Linux",
          "Origin": "https://web.careerwill.com",
          "Sec-Fetch-Site": "cross-site",
          "Sec-Fetch-Mode": "cors",
-         "Sec-Fetch-Dest": "empty",
          "Referer": "https://web.careerwill.com/",
          "Accept-Encoding": "gzip, deflate",
          "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8"
        }
 
-info= {
- "deviceType":"Linux",
-    "password":"",
-    "deviceIMEI":"",
-    "deviceModel":"",
-    "deviceVersion":"",
-    "email":"",
-    "devicesToken":"cPXFOcZSR7eaKB2ZNEYmK2:APA91bEQhKcABxE-uiGpOHfv7euw1sdSeP6z_cpvn0TfwomzCvEGg1ErdnDqM8Oy_rBaUEbv6ExTWnkl9tvOpoh-Az77xgP1EF7PuQVn2G2Gu2jwBHhTZlcb4hbyNuceLxuNai6TXvc1"
-}
+info= {"email":"","password":""}
 os.makedirs("./htmls", exist_ok=True)
 
 @bot.on_message(filters.command(["login"]) & ~filters.edited)
