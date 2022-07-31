@@ -41,7 +41,7 @@ import logging
 import os
 import re
 import cloudscraper
-
+import Bypass_cloudflare
 bot = Client(
     "CW",
     bot_token=os.environ.get("BOT_TOKEN"),
@@ -74,21 +74,30 @@ bc_hdr = {"BCOV-POLICY": BCOV_POLICY}
 
 @bot.on_message(filters.command(["login"])& ~filters.edited)
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text(
-        "Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**"
-    )
+    editable = await m.reply_text("Send **ID & Password** in this manner otherwise bot will not respond.\n\nSend like this:-  **ID*Password**")
+    bypass = Bypass_cloudflare.create._scraper()
     info = {"password": "Redminote4x", "email": "8468056864"}
     url = 'https://elearn.crwilladmin.com/api/v1/login-other'
+    headers ={
+              "Host": "elearn.crwilladmin.com",
+              "Content-Length": "45",
+              "Accept": "application/json",
+              "Origin": "https://web.careerwill.com",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+             }
 
     #input1: Message = await bot.listen(editable.chat.id)
     #raw_text = input1.text
     #info["email"] = raw_text.split("*")[0]
     #info["password"] = raw_text.split("*")[1]
     #await input1.delete(True)
-    scraper = cloudscraper.create_scraper()
-    r = scraper.post(url,info).json()
-    Token = r["data"]["token"]
-    print (y)
+    #scraper = cloudscraper.create_scraper()
+    #r = scraper.post(url,info).json()
+    out = bypass.post(url,info,headers).text
+    print(out)
+    token = r["data"]["token"]
+    print (token)
     await editable.edit("**login Successful**")
     #await editable.edit(f"You have these Batches :-\n{raw_text}")
     
